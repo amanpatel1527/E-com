@@ -10,13 +10,18 @@
 
             {{-- This div is for showing the details of product from the database --}}
             <div class="col-sm-6">
-                <a href="/">Go Back</a>
+                <button class="btn btn-success"><a style="text-decoration: none; color:black;" href="/"  >Go Back</a></button>
                 <h2>{{ $product['name'] }}</h2>
                 <h3>Price: {{ $product['price'] }}</h3>
                 <h4>Details: {{ $product['description'] }}</h4>
                 <h4>Category: {{ $product['category'] }}</h4>
                 <br><br>
-                <button class="btn btn-primary">Add to Cart</button>
+                <form action="/add_to_cart" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product['id'] }}">
+                    <button class="btn btn-primary">Add to Cart</button>
+
+                </form>
                 <br><br>
                 <button class="btn btn-success">Buy Now</button>
                 <br><br>

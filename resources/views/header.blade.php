@@ -1,12 +1,16 @@
 <h3>Header Page</h3>
 <?php
+
 use App\Http\Controllers\ProductController;
-$total = ProductController::cartItem();
+$total = 0;
+if (Session::has('user')) {
+    $total = ProductController::cartItem();
+}
 
 ?>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-    
+
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                 data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -31,7 +35,7 @@ $total = ProductController::cartItem();
                 <button type="submit" class="btn btn-default">Search</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/cartlist">cart({{$total}})</a></li>
+                <li><a href="/cartlist">cart({{ $total }})</a></li>
                 @if (Session::has('user'))
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown"
